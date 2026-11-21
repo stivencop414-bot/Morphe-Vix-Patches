@@ -45,7 +45,7 @@ Community patches for **ViX** (`com.univision.prendetv`) built for **Morphe** (`
 Requires JDK 17+.
 
 ```bash
-./gradlew :patches:jar :patches:generatePatchesList --no-daemon -Dorg.gradle.jvmargs="-Xmx1280m" -PallowMavenLocal=true
+./gradlew :patches:buildAndroid :patches:generatePatchesList --no-daemon -Dorg.gradle.jvmargs="-Xmx1280m" -PallowMavenLocal=true
 ```
 
 Outputs:
