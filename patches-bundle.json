@@ -1,0 +1,7 @@
+{
+  "created_at": "2026-11-21T21:44:00",
+  "description": "ViX Patches v0.1.0 includes 8 patches for ViX 4.52.1_mobile (com.univision.prendetv): player ad blocking, VOD server-side ad auto-skip, promotional popup suppression, telemetry & AD_ID removal, OneTrust startup bypass, screenshot/recording unlock, forced update bypass, and hidden Developer Tools unlock.",
+  "download_url": "https://github.com/stivencop414-bot/Morphe-Vix-Patches/releases/download/v0.1.0/patches-0.1.0.mpp",
+  "signature_download_url": "",
+  "version": "0.1.0"
+}

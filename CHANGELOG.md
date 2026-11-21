@@ -1,0 +1,16 @@
+# Changelog
+
+## v0.1.0 (2026-11-21)
+
+Initial standalone Morphe patch bundle for **ViX `4.52.1_mobile`** (`com.univision.prendetv`, versionCode `7902`).
+
+### Added
+
+- `Block player ads` (Lura prerolls, pause ads, GAM `pod-serve`, clip ad configs, Google IMA).
+- `Auto-skip server-side ads` (`LuraPlayer.skipAd()` guarded by `!isLive()`).
+- `Hide promotional popups` (`BrazeInAppMessageManager.displayInAppMessage`).
+- `Disable telemetry and tracking` (NewRelic, Permutive, AppsFlyer, Conviva, PAL, AAID collector, `AD_ID` permission removal).
+- `Bypass OneTrust consent delay` (optional, disabled by default).
+- `Allow screenshots and screen recording` (`FLAG_SECURE` + `LuraVideoView`/`LuraPlayerView` secure flag).
+- `Bypass forced app update` (`SplashScreenFragment` + `REQUIRE_UPGRADE` state).
+- `Unlock Developer Tools` (`SettingsScreenFragment` + passcode verifier bypass).
