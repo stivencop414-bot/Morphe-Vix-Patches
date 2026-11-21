@@ -37,13 +37,44 @@ val disableTelemetryPatch = patch(
         NewRelicStartFingerprint.method.returnEarly()
 
         val permutiveClass = mutableClassDefBy(PermutiveInitFingerprint.classDef.type)
-        PermutiveInitFingerprint.method.returnEarly()
+        // Skip only the Permutive SDK construction block while preserving `appInstance` initialization (`:cond_1`).
+        PermutiveInitFingerprint.method.apply {
+            val insns = instructions.toList()
+            val newInstanceIdx = insns.indexOfFirst { insn ->
+                insn.opcode == Opcode.NEW_INSTANCE &&
+                    insn.getReference<com.android.tools.smali.dexlib2.iface.reference.TypeReference>()?.type == PERMUTIVE_DESCRIPTOR
+            }
+            if (newInstanceIdx < 2) {
+                throw PatchException("Unexpected Permutive init layout in $definingClass->$name")
+            }
+            val sgetIdx = (newInstanceIdx - 1 downTo 0).firstOrNull { idx ->
+                insns[idx].opcode == Opcode.SGET_BOOLEAN &&
+                    insns.getOrNull(idx + 1)?.opcode == Opcode.IF_NEZ
+            } ?: throw PatchException("Permutive guard flag read not found in $definingClass->$name")
+            val flagReg = (insns[sgetIdx] as OneRegisterInstruction).registerA
+            replaceInstruction(sgetIdx, BuilderInstruction21s(Opcode.CONST_16, flagReg, 1))
+        }
         permutiveClass.methods.singleOrNull {
             it.returnType == PERMUTIVE_DESCRIPTOR && it.parameterTypes.isEmpty()
         }?.returnEarlyNull() ?: throw PatchException("Permutive getter not found in ${permutiveClass.type}")
         permutiveClass.methods.singleOrNull {
             it.returnType == "V" && it.parameterTypes == listOf("Ljava/lang/String;", "Ljava/lang/String;")
         }?.returnEarly() ?: throw PatchException("Permutive update helper not found in ${permutiveClass.type}")
+        permutiveClass.methods.singleOrNull {
+            it.returnType == "Z" && it.parameterTypes.isEmpty()
+        }?.returnEarly(false) ?: throw PatchException("Permutive enabled flag getter not found in ${permutiveClass.type}")
+        permutiveClass.methods.singleOrNull {
+            it.returnType == "V" && it.parameterTypes == listOf("Z")
+        }?.returnEarly() ?: throw PatchException("Permutive enabled flag setter not found in ${permutiveClass.type}")
+        permutiveClass.methods.singleOrNull {
+            it.returnType == "Ljava/lang/String;" && it.parameterTypes.isEmpty()
+        }?.addInstructions(
+            0,
+            """
+                const-string v0, ""
+                return-object v0
+            """.trimIndent(),
+        ) ?: throw PatchException("Permutive reactions helper not found in ${permutiveClass.type}")
 
         AppsFlyerStartFingerprint.method.apply {
             val getInstanceIndex = indexOfFirstInstructionOrThrow {

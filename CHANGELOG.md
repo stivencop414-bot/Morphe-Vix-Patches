@@ -1,5 +1,11 @@
 # Changelog
 
+## v0.1.1 (2026-11-21)
+
+### Fixed
+
+- `Disable telemetry and tracking`: preserve `appInstance` (`tracking/b;->c`) initialization while skipping `Permutive` construction and disabling Permutive event tracking (`e()`, `g()`, `a()`, `c()`, `f()`), fixing a startup `UninitializedPropertyAccessException` in `UiPageScreenFragment`.
+
 ## v0.1.0 (2026-11-21)
 
 Initial standalone Morphe patch bundle for **ViX `4.52.1_mobile`** (`com.univision.prendetv`, versionCode `7902`).

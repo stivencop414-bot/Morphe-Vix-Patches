@@ -50,7 +50,7 @@ Requires JDK 17+.
 
 Outputs:
 
-- Bundle: `patches/build/libs/patches-0.1.0.mpp`
+- Bundle: `patches/build/libs/patches-0.1.1.mpp`
 - Catalog: `patches-list.json`
 
 ## License
