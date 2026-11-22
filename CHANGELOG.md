@@ -1,3 +1,9 @@
+## [0.2.1](https://github.com/stivencop414-bot/PatchLab/compare/v0.2.0...v0.2.1) (2026-11-22)
+
+### 🐛 Bug Fixes
+
+* update PatchLab branding and source links ([7303643](https://github.com/stivencop414-bot/PatchLab/commit/7303643e7eb5e213fb8ae6fe21581d879d43057c))
+
 ## [0.2.0](https://github.com/stivencop414-bot/Morphe-Vix-Patches/compare/v0.1.1...v0.2.0) (2026-11-22)
 
 ### ✨ New Features

@@ -1,7 +1,7 @@
 {
-  "created_at": "2026-11-22T15:16:45",
-  "description": "## [0.2.0](https://github.com/stivencop414-bot/Morphe-Vix-Patches/compare/v0.1.1...v0.2.0) (2026-11-22)\n\n### ✨ New Features\n\n* combine ViX, Ditu, and TV Colombia Play patches ([5297af7](https://github.com/stivencop414-bot/Morphe-Vix-Patches/commit/5297af77c8812f912dd597e3ee0eb29f4bd0d9d7))",
-  "download_url": "https://github.com/stivencop414-bot/Morphe-Vix-Patches/releases/download/v0.2.0/patches-0.2.0.mpp",
+  "created_at": "2026-11-22T15:35:27",
+  "description": "## [0.2.1](https://github.com/stivencop414-bot/PatchLab/compare/v0.2.0...v0.2.1) (2026-11-22)\n\n### 🐛 Bug Fixes\n\n* update PatchLab branding and source links ([7303643](https://github.com/stivencop414-bot/PatchLab/commit/7303643e7eb5e213fb8ae6fe21581d879d43057c))",
+  "download_url": "https://github.com/stivencop414-bot/PatchLab/releases/download/v0.2.1/patches-0.2.1.mpp",
   "signature_download_url": "",
-  "version": "0.2.0"
+  "version": "0.2.1"
 }
