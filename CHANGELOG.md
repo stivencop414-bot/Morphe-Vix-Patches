@@ -1,3 +1,9 @@
+## [0.2.0](https://github.com/stivencop414-bot/Morphe-Vix-Patches/compare/v0.1.1...v0.2.0) (2026-11-22)
+
+### ✨ New Features
+
+* combine ViX, Ditu, and TV Colombia Play patches ([5297af7](https://github.com/stivencop414-bot/Morphe-Vix-Patches/commit/5297af77c8812f912dd597e3ee0eb29f4bd0d9d7))
+
 # Changelog
 
 ## v0.1.1 (2026-11-21)

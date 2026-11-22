@@ -15,7 +15,13 @@ Las versiones y los certificados compatibles se comprueban al seleccionar la apl
 ## Parches
 
 <!-- PATCHES_START -->
-La lista completa se genera con cada publicación.
+> **[v0.2.0](https://github.com/stivencop414-bot/Morphe-Vix-Patches/releases/tag/v0.2.0)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**18 patches** across **3 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
+
+| # | App | Patches | Version | Package |
+|---|---|---|---|---|
+| 1 | [**Ditu**](PATCHES.md#ditu-comcaracolstreaming) | 7 | `2.8.1` | [`com.caracol.streaming`](https://play.google.com/store/apps/details?id=com.caracol.streaming) |
+| 2 | [**TV Colombia Play**](PATCHES.md#tv-colombia-play-colombiatvplus) | 3 | `1015` | [`colombia.tv.plus`](https://play.google.com/store/apps/details?id=colombia.tv.plus) |
+| 3 | [**ViX**](PATCHES.md#vix-comunivisionprendetv) | 8 | `4.52.1_mobile` | [`com.univision.prendetv`](https://play.google.com/store/apps/details?id=com.univision.prendetv) |
 <!-- PATCHES_END -->
 
 ## Uso
