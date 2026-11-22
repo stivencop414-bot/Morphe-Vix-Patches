@@ -2,12 +2,12 @@ group = "app.morphe"
 
 patches {
     about {
-        name = "Stiven Patches"
-        description = "Community patches for Ditu, ViX, and TV Colombia Play compatible with Morphe."
-        source = "https://github.com/stivencop414-bot/Morphe-Vix-Patches"
+        name = "PatchLab"
+        description = "Community patches for Android apps compatible with Morphe."
+        source = "https://github.com/stivencop414-bot/PatchLab"
         author = "stivencop414-bot"
-        contact = "https://github.com/stivencop414-bot/Morphe-Vix-Patches/issues"
-        website = "https://github.com/stivencop414-bot/Morphe-Vix-Patches"
+        contact = "https://github.com/stivencop414-bot/PatchLab/issues"
+        website = "https://github.com/stivencop414-bot/PatchLab"
         license = "GNU General Public License v3.0, with additional GPL section 7 requirements"
     }
 }

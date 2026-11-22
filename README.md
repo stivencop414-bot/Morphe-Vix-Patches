@@ -1,21 +1,37 @@
-# Stiven Patches
+<p align="center">
+  <img src=".github/assets/patchlab-banner.svg" alt="PatchLab — community patches for a more personal app experience" width="100%">
+</p>
 
-Parches independientes para Ditu, ViX y TV Colombia Play, reunidos en un único bundle para Morphe. Este proyecto no está afiliado a las aplicaciones ni a Morphe y no distribuye APK ni XAPK.
+<p align="center">
+  <a href="https://github.com/stivencop414-bot/PatchLab/releases/latest"><img src="https://img.shields.io/github/v/release/stivencop414-bot/PatchLab?label=release&color=746bff" alt="Latest release"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-GPL--3.0-4388c7" alt="License: GPL-3.0"></a>
+  <img src="https://img.shields.io/badge/platform-Android-3bba81" alt="Platform: Android">
+  <img src="https://img.shields.io/badge/works%20with-Morphe-26a99b" alt="Works with Morphe">
+</p>
 
-## Compatibilidad
+<p align="center">
+  <strong>One collection. More ways to make your apps your own.</strong><br>
+  Community patches for privacy, personalization, and a less cluttered experience.
+</p>
 
-| App | Paquete | Versión compatible | Código | SHA-256 del certificado |
-| --- | --- | --- | --- | --- |
-| Ditu | `com.caracol.streaming` | `2.8.1` | `4731` | `6cc4605aa7b9ee71a34e0f8125a9050330563d795e87ae54b5c792868c188895` |
-| ViX | `com.univision.prendetv` | `4.52.1_mobile` | `7902` | `eb6f3b76c6110bb945f88530ff5742634e48223c382931c319daceb431fe666d` |
-| TV Colombia Play | `colombia.tv.plus` | `1015` | `20` | `58469bf5383c2348f5082835eef797d179d9f065cb8e64c409e0e7382967dce2` |
+<p align="center">
+  <a href="https://morphe.software/add-source?github=stivencop414-bot%2FPatchLab"><img src="https://img.shields.io/badge/Add%20to-Morphe-7769ff?style=for-the-badge" alt="Add PatchLab to Morphe"></a>
+  &nbsp;
+  <a href="https://github.com/stivencop414-bot/PatchLab/releases/latest"><img src="https://img.shields.io/badge/View%20latest-release-26364e?style=for-the-badge" alt="View the latest release"></a>
+</p>
 
-Las versiones y los certificados compatibles se comprueban al seleccionar la aplicación. Los parches modifican el comportamiento del cliente; no conceden suscripciones ni licencias DRM. Los anuncios integrados en la señal de un canal pueden seguir apareciendo y las superficies protegidas por Widevine pueden impedir las capturas.
+## What is PatchLab?
 
-## Parches
+PatchLab brings community patches for different Android apps together in a single bundle. Depending on the app, patches can reduce ads and tracking, adjust the interface, or add convenient options. Choose the patches you want in Morphe Manager.
+
+PatchLab is an independent community project. It is not affiliated with Morphe or the developers of the supported apps.
+
+## Supported apps
+
+The list below is generated from the current release and will grow as new apps and patches are added.
 
 <!-- PATCHES_START -->
-> **[v0.2.0](https://github.com/stivencop414-bot/Morphe-Vix-Patches/releases/tag/v0.2.0)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**18 patches** across **3 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
+> **[v0.2.0](https://github.com/stivencop414-bot/PatchLab/releases/tag/v0.2.0)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**18 patches** across **3 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
 
 | # | App | Patches | Version | Package |
 |---|---|---|---|---|
@@ -24,14 +40,32 @@ Las versiones y los certificados compatibles se comprueban al seleccionar la apl
 | 3 | [**ViX**](PATCHES.md#vix-comunivisionprendetv) | 8 | `4.52.1_mobile` | [`com.univision.prendetv`](https://play.google.com/store/apps/details?id=com.univision.prendetv) |
 <!-- PATCHES_END -->
 
-## Uso
+Each patch is intended for the versions and original signing certificates listed in its compatibility details. Other versions or distributions may not work.
 
-En Morphe Manager 2.6.0 o posterior, añade como fuente `https://github.com/stivencop414-bot/Morphe-Vix-Patches` y selecciona una copia compatible del APK o XAPK obtenido por medios autorizados. Después elige los parches y genera el APK localmente. La validación de parches no sustituye una prueba de reproducción, inicio de sesión y estabilidad en un dispositivo.
+## Get started
 
-## Compilación
+1. Install **Morphe Manager 2.6.0 or newer**.
+2. Tap **Add to Morphe** above, or add this repository under **Sources**:
 
-Requiere JDK 21, Android SDK y dependencias de Morphe, incluido `morphe-patcher` 2.4.0. Ejecuta `./gradlew :patches:buildAndroid :patches:generatePatchesList --no-daemon`. La primera tarea incorpora `classes.dex` al bundle `.mpp`. Las publicaciones de la rama principal se generan con Semantic Release y GitHub Actions.
+   `https://github.com/stivencop414-bot/PatchLab`
 
-## Licencia y procedencia
+3. Choose a compatible, original APK or XAPK obtained through authorized means.
+4. Select your patches and build the patched app on your device.
 
-[GPL-3.0](LICENSE), con las condiciones adicionales de [NOTICE](NOTICE). El código procede de los repositorios [Ditu](https://github.com/stivencop414-bot/Morphe-Ditu-Patches), [ViX](https://github.com/stivencop414-bot/Morphe-Vix-Patches) y [TV Colombia Play](https://github.com/stivencop414-bot/TV-Colombia-Play-Patches---for-Morphe).
+[Browse all patches and compatibility details](PATCHES.md) · [Download the latest bundle](https://github.com/stivencop414-bot/PatchLab/releases/latest)
+
+> Patches change app behavior on the client; they do not grant paid subscriptions or DRM licenses. Ads embedded in a broadcast may remain, and protected video surfaces can still block screenshots.
+
+## Build from source
+
+You need JDK 21, the Android SDK, and the Morphe dependencies used by this project, including `morphe-patcher` 2.4.0.
+
+```bash
+./gradlew :patches:buildAndroid :patches:generatePatchesList --no-daemon
+```
+
+The Android build produces the `.mpp` bundle. Releases and the patch list are generated automatically through GitHub Actions.
+
+## License
+
+[GPL-3.0](LICENSE), with the additional terms and upstream notices in [NOTICE](NOTICE). PatchLab does not distribute app APKs or XAPKs.
