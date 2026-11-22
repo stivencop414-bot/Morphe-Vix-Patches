@@ -1,58 +1,31 @@
-# ViX Patches (for Morphe)
+# Stiven Patches
 
-Community patches for **ViX** (`com.univision.prendetv`) built for **Morphe** (`morphe-patcher 2.4.0`), covering ad blocking, auto-skip for VOD server-side ads, telemetry/tracking removal, consent/forced-update bypass, screenshot/screen-recording support, and Developer Tools unlocking.
+Parches independientes para Ditu, ViX y TV Colombia Play, reunidos en un único bundle para Morphe. Este proyecto no está afiliado a las aplicaciones ni a Morphe y no distribuye APK ni XAPK.
 
-> Note on server-enforced SVOD/DRM content: These patches modify client-side behavior only. Paid ViX Premium entitlements and hardware-backed Widevine L1 server licenses are enforced server-side and are not bypassed.
+## Compatibilidad
 
-## Supported Target
-
-| App | Package Name | Version | Version Code | Certificate SHA-256 |
+| App | Paquete | Versión compatible | Código | SHA-256 del certificado |
 | --- | --- | --- | --- | --- |
+| Ditu | `com.caracol.streaming` | `2.8.1` | `4731` | `6cc4605aa7b9ee71a34e0f8125a9050330563d795e87ae54b5c792868c188895` |
 | ViX | `com.univision.prendetv` | `4.52.1_mobile` | `7902` | `eb6f3b76c6110bb945f88530ff5742634e48223c382931c319daceb431fe666d` |
+| TV Colombia Play | `colombia.tv.plus` | `1015` | `20` | `58469bf5383c2348f5082835eef797d179d9f065cb8e64c409e0e7382967dce2` |
 
-## Patches Included (`8`)
+Las versiones y los certificados compatibles se comprueban al seleccionar la aplicación. Los parches modifican el comportamiento del cliente; no conceden suscripciones ni licencias DRM. Los anuncios integrados en la señal de un canal pueden seguir apareciendo y las superficies protegidas por Widevine pueden impedir las capturas.
 
-### Ads
+## Parches
 
-| Patch | Default | Description |
-| --- | --- | --- |
-| `Block player ads` | Enabled | Disables Lura client-side prerolls, pause ads (`F2` / `M2`), GAM `pod-serve` DAI configs, clip ad tags, and Google IMA ad tag resolution (`AdsWrapper`). |
-| `Auto-skip server-side ads` | Enabled | Calls `LuraPlayer.skipAd()` when an ad starts on non-live VOD streams (`!player.isLive()`). |
-| `Hide promotional popups` | Enabled | Suppresses Braze in-app promotional dialogs and upgrade banners (`BrazeInAppMessageManager.displayInAppMessage`). |
+<!-- PATCHES_START -->
+La lista completa se genera con cada publicación.
+<!-- PATCHES_END -->
 
-### Privacy
+## Uso
 
-| Patch | Default | Description |
-| --- | --- | --- |
-| `Disable telemetry and tracking` | Enabled | Disables NewRelic startup, Permutive DMP SDK, AppsFlyer initialization, Conviva and Google PAL player telemetry plugins, Advertising ID collection, and strips `com.google.android.gms.permission.AD_ID` from `AndroidManifest.xml`. |
-| `Bypass OneTrust consent delay` | Disabled | Skips `OTPublishersHeadlessSDK.startSDK` initialization at startup and invokes the continuation callback immediately. |
+En Morphe Manager 2.6.0 o posterior, añade como fuente `https://github.com/stivencop414-bot/Morphe-Vix-Patches` y selecciona una copia compatible del APK o XAPK obtenido por medios autorizados. Después elige los parches y genera el APK localmente. La validación de parches no sustituye una prueba de reproducción, inicio de sesión y estabilidad en un dispositivo.
 
-### Interaction
+## Compilación
 
-| Patch | Default | Description |
-| --- | --- | --- |
-| `Allow screenshots and screen recording` | Enabled | Strips `Window.setFlags(FLAG_SECURE)` and forces `LuraVideoView` / `LuraPlayerView` `setSecure` to `false`. Hardware-backed Widevine L1 DRM surfaces may still be restricted by Android codecs. |
+Requiere JDK 21, Android SDK y dependencias de Morphe, incluido `morphe-patcher` 2.4.0. Ejecuta `./gradlew :patches:buildAndroid :patches:generatePatchesList --no-daemon`. La primera tarea incorpora `classes.dex` al bundle `.mpp`. Las publicaciones de la rama principal se generan con Semantic Release y GitHub Actions.
 
-### Misc
+## Licencia y procedencia
 
-| Patch | Default | Description |
-| --- | --- | --- |
-| `Bypass forced app update` | Enabled | Prevents `SplashScreenFragment` from presenting `AppUpdateDialog` and clears the `REQUIRE_UPGRADE` gate. |
-| `Unlock Developer Tools` | Enabled | Bypasses the SHA-1 passcode prompt for ViX's hidden Developer Tools (`DevToolsScreenFragment`). Tap the app version **6 times** in Settings to open it. |
-
-## Building
-
-Requires JDK 17+.
-
-```bash
-./gradlew :patches:buildAndroid :patches:generatePatchesList --no-daemon -Dorg.gradle.jvmargs="-Xmx1280m" -PallowMavenLocal=true
-```
-
-Outputs:
-
-- Bundle: `patches/build/libs/patches-0.1.1.mpp`
-- Catalog: `patches-list.json`
-
-## License
-
-Licensed under the [GNU General Public License v3.0](LICENSE) with Additional Terms under Section 7 described in [NOTICE](NOTICE).
+[GPL-3.0](LICENSE), con las condiciones adicionales de [NOTICE](NOTICE). El código procede de los repositorios [Ditu](https://github.com/stivencop414-bot/Morphe-Ditu-Patches), [ViX](https://github.com/stivencop414-bot/Morphe-Vix-Patches) y [TV Colombia Play](https://github.com/stivencop414-bot/TV-Colombia-Play-Patches---for-Morphe).

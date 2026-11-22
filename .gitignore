@@ -1,4 +1,5 @@
 # Gradle & build outputs
+node_modules/
 .gradle/
 .kotlin/
 build/

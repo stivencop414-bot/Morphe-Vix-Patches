@@ -1,5 +1,6 @@
 package app.morphe.patches.shared.compat
 
+import app.morphe.patcher.patch.ApkFileType
 import app.morphe.patcher.patch.AppTarget
 import app.morphe.patcher.patch.Compatibility
 
@@ -19,6 +20,17 @@ internal object AppCompatibilities {
             targets = listOf(
                 AppTarget(version = "4.52.1_mobile", versionCode = VIX_4521_VERSION_CODE),
             ),
+        ),
+    )
+
+    fun ditu(): Array<Compatibility> = arrayOf(
+        Compatibility(
+            name = "Ditu",
+            packageName = "com.caracol.streaming",
+            apkFileType = ApkFileType.XAPK,
+            appIconColor = 0xFF6600,
+            signatures = setOf("6cc4605aa7b9ee71a34e0f8125a9050330563d795e87ae54b5c792868c188895"),
+            targets = listOf(AppTarget(version = "2.8.1", versionCode = 4731)),
         ),
     )
 }

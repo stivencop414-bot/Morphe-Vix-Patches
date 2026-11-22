@@ -41,165 +41,102 @@
  */
 package app.morphe.util
 
-import app.morphe.patcher.patch.AppTarget
-import app.morphe.patcher.patch.Compatibility
 import app.morphe.patcher.patch.Patch
 import app.morphe.patcher.patch.loadPatchesFromJar
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import java.io.File
-import java.net.URLClassLoader
-import java.util.jar.Manifest
-
-typealias PackageName = String
-typealias VersionName = String
+import java.util.jar.JarFile
 
 internal fun main(args: Array<String>) {
     require(args.size == 1) { "Expected the current patch bundle version" }
     val patchFile = File("build/libs/patches-${args.single()}.mpp")
     require(patchFile.isFile) { "Current patch bundle not found: ${patchFile.path}" }
-    val patchFiles = setOf(patchFile)
-    val loadedPatches = loadPatchesFromJar(patchFiles)
-    val patchClassLoader = URLClassLoader(patchFiles.map { it.toURI().toURL() }.toTypedArray())
-    val manifest = patchClassLoader.getResources("META-INF/MANIFEST.MF")
-
-    while (manifest.hasMoreElements()) {
-        Manifest(manifest.nextElement().openStream())
-            .mainAttributes
-            .getValue("Version")
-            ?.let {
-                generatePatchList(it, loadedPatches)
-            }
+    val version = JarFile(patchFile).use { archive ->
+        checkNotNull(archive.manifest?.mainAttributes?.getValue("Version")) {
+            "Patch bundle is missing the Version attribute"
+        }
     }
+    check(version == args.single()) { "Patch bundle version $version does not match ${args.single()}" }
+    generatePatchList(version, loadPatchesFromJar(setOf(patchFile)))
 }
 
-/**
- * Emits `version`, root-level `appNames` (package to label), and `patches` with
- * `compatiblePackages`, **`compatibility`** (full `Compatibility` metadata for Manager UI),
- * and options. Requires morphe-patcher 1.3.x and `compatibleWith(Compatibility(...))` in patches.
- */
 @Suppress("DEPRECATION")
 private fun generatePatchList(version: String, patches: Set<Patch>) {
     val listJson = File("../patches-list.json")
 
-    val appNames = patches
-        .asSequence()
-        .flatMap { it.compatibility.orEmpty().asSequence() }
-        .mapNotNull { c ->
-            val pkg = c.packageName ?: return@mapNotNull null
-            val label = c.name ?: return@mapNotNull null
-            pkg to label
-        }
-        .toMap()
-
-    val patchesMap = patches.sortedBy { it.name }.map {
+    val patchesMap = patches.sortedBy { it.name }.map { patch ->
         JsonPatch(
-            it.name!!,
-            it.description,
-            it.category,
-            it.default,
-            // The patch's own name, not its Kotlin class. Every entry used to read
-            // "BytecodePatch", which made the only machine-readable dependency record say
-            // nothing at all. Internal patches with no name keep the class name, which is "Patch"
-            // for every one of them since patcher 2.3.
-            //
-            // Deduplicated and sorted, because this is a set written down as a list. Two patches
-            // reached the same unnamed dependency twice and their rows said "BytecodePatch,
-            // BytecodePatch", which reads as two things and is one, and the order everywhere else
-            // was whatever the traversal happened to produce, so an unrelated edit could move
-            // rows about and make the catalog diff say more than the change did.
-            it.dependencies
-                .map { dependency -> dependency.name ?: dependency.javaClass.simpleName }
-                .distinct()
-                .sorted(),
-            it.compatibility?.mapNotNull { c -> c.legacyPackage() }?.toMap(),
-            it.compatibility.orEmpty().map { c -> c.toJsonCompatibility() },
-            it.options.values.map { option ->
-                JsonPatch.Option(
-                    option.key,
-                    option.title,
-                    option.description,
-                    option.required,
-                    option.type.toString(),
-                    option.default,
-                    option.values,
+            name = patch.name!!,
+            description = patch.description,
+            default = patch.default,
+            category = patch.category,
+            // Map each Compatibility to a JsonCompatibility object with full metadata.
+            // Patches with null compatiblePackages are universal (apply to any app).
+            compatiblePackages = patch.compatibility?.map { compat ->
+                JsonCompatibility(
+                    packageName = compat.packageName!!,
+                    name = compat.name,
+                    description = compat.description,
+                    apkFileType = compat.apkFileType?.name,
+                    // Format as #RRGGBB string for readability; null if not set
+                    appIconColor = compat.appIconColor?.let { "#%06X".format(it) },
+                    signatures = compat.signatures,
+                    formFactor = compat.formFactor?.name,
+                    targets = compat.targets.map { target ->
+                        JsonCompatibility.Target(
+                            version = target.version,
+                            versionCodes = target.versionCodes?.mapKeys { it.key.name },
+                            isExperimental = target.isExperimental,
+                            minSdk = target.minSdk,
+                            description = target.description,
+                        )
+                    },
                 )
             },
+            options = patch.options.values.map { option ->
+                JsonPatch.Option(
+                    key = option.key,
+                    title = option.title,
+                    description = option.description,
+                    required = option.required,
+                    type = option.type.toString(),
+                    default = option.default,
+                    values = option.values,
+                )
+            }
         )
     }
 
-    val gsonBuilder = GsonBuilder()
+    val gson = GsonBuilder()
         .serializeNulls()
         .disableHtmlEscaping()
         .setPrettyPrinting()
         .create()
 
     val jsonObject = JsonObject()
-    jsonObject.addProperty("version", "v$version")
-    jsonObject.add("appNames", gsonBuilder.toJsonTree(appNames))
-    jsonObject.add("patches", gsonBuilder.toJsonTree(patchesMap))
-
-    listJson.writeText(
-        gsonBuilder.toJson(jsonObject)
+    jsonObject.addProperty(
+        "NOTE",
+        "Do NOT manually edit this file. This file is automatically updated when " +
+                "semantic release (release.yml) runs. Manually editing this file can break " +
+                "your releases and break third party tools that use this file."
     )
+    jsonObject.addProperty("version", version)
+    jsonObject.add("patches", gson.toJsonTree(patchesMap))
+
+    listJson.writeText(gson.toJson(jsonObject))
 }
 
-// Patcher 2.0 hides compatiblePackages and keeps the mapping behind it internal, so this is that
-// mapping again: Manager 1.x still reads the field, and dropping it would empty every patch's
-// supported versions there. Stable targets only, unless a package declares nothing but
-// experimental ones; a null version anywhere means any version.
-private fun Compatibility.legacyPackage(): Pair<PackageName, Set<VersionName>?>? {
-    val pkg = packageName ?: return null
-    val onlyExperimental = targets.none { !it.isExperimental }
-    val counted = targets.filter { onlyExperimental || !it.isExperimental }
-    if (counted.any { it.version == null }) return pkg to null
-    return pkg to counted.mapNotNull { it.version }.toSet().ifEmpty { null }
-}
-
-private fun Compatibility.toJsonCompatibility() = JsonCompatibility(
-    name = name ?: "",
-    packageName = packageName ?: "",
-    description = description?.takeUnless { it.isBlank() },
-    appIconColor = appIconColor,
-    // The certificates Morphe Manager holds a picked APK to. The patches template's generator
-    // writes these and the per-target version codes; this one used to drop both, so the catalog
-    // said nothing about what Manager actually checks.
-    signatures = signatures?.sorted(),
-    targets = targets.map { t -> t.toJsonAppTarget() },
-)
-
-private fun AppTarget.toJsonAppTarget() = JsonAppTarget(
-    version = version ?: "",
-    experimental = isExperimental,
-    versionCodes = versionCodes?.entries?.sortedBy { it.key.name }?.associate { it.key.name to it.value },
-)
-
-@Suppress("unused")
-private class JsonCompatibility(
-    val name: String,
-    val packageName: String,
-    val description: String? = null,
-    val appIconColor: Int?,
-    val signatures: List<String>?,
-    val targets: List<JsonAppTarget>?,
-)
-
-@Suppress("unused")
-private class JsonAppTarget(
-    val version: String,
-    val experimental: Boolean = false,
-    val versionCodes: Map<String, Int>? = null,
-)
-
+/** JSON representation of a patch entry in patches-list.json. */
 @Suppress("unused")
 private class JsonPatch(
     val name: String? = null,
     val description: String? = null,
+    val default: Boolean = true,
+    /** Null when the patch declares no category and is left ungrouped. */
     val category: String? = null,
-    val use: Boolean = true,
-    val dependencies: List<String>,
-    val compatiblePackages: Map<PackageName, Set<VersionName>?>? = null,
-    val compatibility: List<JsonCompatibility>,
+    /** Null means the patch is universal and applies to any app. */
+    val compatiblePackages: List<JsonCompatibility>? = null,
     val options: List<Option>,
 ) {
     class Option(
@@ -213,3 +150,32 @@ private class JsonPatch(
     )
 }
 
+/** JSON representation of a compatible app entry, including name and per-version metadata. */
+@Suppress("unused")
+private class JsonCompatibility(
+    /** Android package name, e.g. com.google.android.youtube. */
+    val packageName: String,
+    /** Human-readable app name declared in Compatibility, e.g. "YouTube". */
+    val name: String?,
+    /** User-facing description of the app. */
+    val description: String?,
+    /** Target unpatched app file type, e.g. APK, APKM. Null if not specified. */
+    val apkFileType: String?,
+    /** App icon background color as #RRGGBB string, or null if not set. */
+    val appIconColor: String?,
+    /** Valid SHA-256 signatures of the app. */
+    val signatures: Set<String>?,
+    /** Device form factor of the app, e.g. MOBILE, TV. Null means all form factors. */
+    val formFactor: String?,
+    val targets: List<Target>,
+) {
+    class Target(
+        val version: String?,
+        val versionCodes: Map<String, Int>?,
+        val isExperimental: Boolean,
+        /** Minimum device SDK version. Null means any SDK version. */
+        val minSdk: Int?,
+        /** Optional user-facing note about this specific version. */
+        val description: String?,
+    )
+}
