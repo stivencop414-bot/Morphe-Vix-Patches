@@ -1,3 +1,9 @@
+## [0.3.1](https://github.com/stivencop414-bot/PatchLab/compare/v0.3.0...v0.3.1) (2026-11-23)
+
+### 🐛 Bug Fixes
+
+* **meitu:** stop the Meitu patches from breaking startup and the editor ([88085ed](https://github.com/stivencop414-bot/PatchLab/commit/88085ed808040c4c2ee8a882335c8dce28eb3869))
+
 ## [0.3.0](https://github.com/stivencop414-bot/PatchLab/compare/v0.2.1...v0.3.0) (2026-11-23)
 
 ### ✨ New Features
