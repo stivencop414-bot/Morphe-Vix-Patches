@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v0.3.0** (`main`) · **22 patches** across **4 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v0.3.0** (`main`) · **21 patches** across **4 apps** · back to [README](README.md)
 
 ---
 
@@ -28,7 +28,6 @@
 |---|---|
 | **Clean Home** | Hides promotional icons from Meitu's home by filtering its icon list before it is drawn. Camera, photo, beautify, face, body and collage are protected and never hidden. If a name does not exist in your region, the home is left untouched.<br><sub>Options: Icons to hide, Protected icons</sub> |
 | **Remove Ads** | Disables Meitu's banners, interstitials, cold-start splash and native ads by closing its placement gates. The editor, gallery and normal content loading are unaffected. |
-| **Unlock Local Materials** | EXPERIMENTAL. Makes `Skin.isVip()` return `true` so facial-retouch materials stop being classified locally as paid. Independent of account state; combines with VIP Unlock. It does not download material the server withholds. |
 | **VIP Unlock** | EXPERIMENTAL. Makes the app treat the current account as VIP by replacing the `XXVipUtil.x0()` gate with `true`. Affects local VIP checks (interface, material flags, local export routes). It does not create rights the Meitu server validates itself. |
 
 ---

@@ -31,12 +31,12 @@ PatchLab is an independent community project. It is not affiliated with Morphe o
 The list below is generated from the current release and will grow as new apps and patches are added.
 
 <!-- PATCHES_START -->
-> **[v0.3.0](https://github.com/stivencop414-bot/PatchLab/releases/tag/v0.3.0)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**22 patches** across **4 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
+> **[v0.3.0](https://github.com/stivencop414-bot/PatchLab/releases/tag/v0.3.0)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**21 patches** across **4 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
 
 | # | App | Patches | Version | Package |
 |---|---|---|---|---|
 | 1 | [**Ditu**](PATCHES.md#ditu-comcaracolstreaming) | 7 | `2.8.1` | [`com.caracol.streaming`](https://play.google.com/store/apps/details?id=com.caracol.streaming) |
-| 2 | [**Meitu**](PATCHES.md#meitu-commtmtxxmtxx) | 4 | `experimental 12.23.3` | [`com.mt.mtxx.mtxx`](https://play.google.com/store/apps/details?id=com.mt.mtxx.mtxx) |
+| 2 | [**Meitu**](PATCHES.md#meitu-commtmtxxmtxx) | 3 | `experimental 12.23.3` | [`com.mt.mtxx.mtxx`](https://play.google.com/store/apps/details?id=com.mt.mtxx.mtxx) |
 | 3 | [**TV Colombia Play**](PATCHES.md#tv-colombia-play-colombiatvplus) | 3 | `1015` | [`colombia.tv.plus`](https://play.google.com/store/apps/details?id=colombia.tv.plus) |
 | 4 | [**ViX**](PATCHES.md#vix-comunivisionprendetv) | 8 | `4.52.1_mobile` | [`com.univision.prendetv`](https://play.google.com/store/apps/details?id=com.univision.prendetv) |
 <!-- PATCHES_END -->

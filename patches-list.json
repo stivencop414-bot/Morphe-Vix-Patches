@@ -698,38 +698,6 @@
       "options": []
     },
     {
-      "name": "Unlock Local Materials",
-      "description": "EXPERIMENTAL. Makes `Skin.isVip()` return `true` so facial-retouch materials stop being classified locally as paid. Independent of account state; combines with VIP Unlock. It does not download material the server withholds.",
-      "default": false,
-      "category": "Premium",
-      "compatiblePackages": [
-        {
-          "packageName": "com.mt.mtxx.mtxx",
-          "name": "Meitu",
-          "description": null,
-          "apkFileType": "APKM",
-          "appIconColor": "#F01C48",
-          "signatures": [
-            "fbf80b9d1e44cc257b3ff3e51abece20d911fe76c0210b21ff58602c734c0153"
-          ],
-          "formFactor": "MOBILE",
-          "targets": [
-            {
-              "version": "12.23.3",
-              "versionCodes": {
-                "ARM64_V8A": 122303,
-                "ARMEABI_V7A": 122303
-              },
-              "isExperimental": true,
-              "minSdk": null,
-              "description": "Bytecode verified against the original APK. Not yet run on a device, so the on-screen result is unconfirmed."
-            }
-          ]
-        }
-      ],
-      "options": []
-    },
-    {
       "name": "VIP Unlock",
       "description": "EXPERIMENTAL. Makes the app treat the current account as VIP by replacing the `XXVipUtil.x0()` gate with `true`. Affects local VIP checks (interface, material flags, local export routes). It does not create rights the Meitu server validates itself.",
       "default": false,
