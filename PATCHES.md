@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v0.3.1** (`main`) · **21 patches** across **4 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v0.3.1** (`main`) · **18 patches** across **3 apps** · back to [README](README.md)
 
 ---
 
@@ -17,18 +17,6 @@
 | **Bypass forced update** | Disables the client forced-update decision while retaining optional update checks. Server-side version requirements can still apply. |
 | **Hide player campaign banners** | Disables the player's optional Megaphone banner overlay on phone and TV. This can hide announcements as well as promotions. |
 | **Remove advertising ID permissions** | Removes the Google advertising ID and Android Ad Services advertising ID permissions. Other identifiers and telemetry may remain. |
-
----
-
-## Meitu (com.mt.mtxx.mtxx)
-
-**Supported versions:** `experimental 12.23.3`
-
-| Patch | Details |
-|---|---|
-| **Clean Home** | Hides promotional icons from Meitu's home by filtering its icon list before it is drawn. Camera, photo, beautify, face, body and collage are protected and never hidden. If a name does not exist in your region, the home is left untouched.<br><sub>Options: Icons to hide, Protected icons</sub> |
-| **Remove Ads** | Disables Meitu's banners, interstitials, cold-start splash and native ads by closing its placement gates. The editor, gallery and normal content loading are unaffected. |
-| **VIP Unlock** | EXPERIMENTAL. Makes the app treat the current account as VIP by replacing the `XXVipUtil.x0()` gate with `true`. Affects local VIP checks (interface, material flags, local export routes). It does not create rights the Meitu server validates itself. |
 
 ---
 
