@@ -613,6 +613,38 @@
         }
       ],
       "options": []
+    },
+    {
+      "name": "Unlock VIP",
+      "description": "Reports an active VIP subscriber: isVip() returns true, isValidUser() returns 1, getVipType() returns 1 and VIP trial materials count as unlocked. Server-side per-material rights and AIGC quotas are not affected.",
+      "default": true,
+      "category": "Premium",
+      "compatiblePackages": [
+        {
+          "packageName": "com.mt.mtxx.mtxx",
+          "name": "Meitu",
+          "description": null,
+          "apkFileType": "APKM",
+          "appIconColor": "#F01C48",
+          "signatures": null,
+          "formFactor": "MOBILE",
+          "targets": [
+            {
+              "version": "12.23.3",
+              "versionCodes": {
+                "ARM64_V8A": 122303,
+                "ARMEABI_V7A": 122303,
+                "X86_64": 122303,
+                "X86": 122303
+              },
+              "isExperimental": false,
+              "minSdk": null,
+              "description": null
+            }
+          ]
+        }
+      ],
+      "options": []
     }
   ]
 }
