@@ -1,6 +1,6 @@
 # Patches
 
-> Generated from `patches-list.json` — **v0.3.1** (`main`) · **19 patches** across **4 apps** · back to [README](README.md)
+> Generated from `patches-list.json` — **v0.3.1** (`feat/meitu-premium`) · **19 patches** across **4 apps** · back to [README](README.md)
 
 ---
 
@@ -26,7 +26,7 @@
 
 | Patch | Details |
 |---|---|
-| **Unlock VIP** | Reports an active VIP subscriber: isVip() returns true, isValidUser() returns 1, getVipType() returns 1 and VIP trial materials count as unlocked. Server-side per-material rights and AIGC quotas are not affected. |
+| **Unlock VIP** | Reports an active VIP subscriber: isVip() returns true, isValidUser() returns 1, getVipType() returns 1 and VIP trial materials count as unlocked. Static fields E (isValidUser) and F (vipType) are initialized to 1. Server-side per-material rights and AIGC quotas are not affected. |
 
 ---
 

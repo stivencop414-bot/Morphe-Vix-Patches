@@ -31,7 +31,7 @@ PatchLab is an independent community project. It is not affiliated with Morphe o
 The list below is generated from the current release and will grow as new apps and patches are added.
 
 <!-- PATCHES_START -->
-> **[v0.3.1](https://github.com/stivencop414-bot/PatchLab/releases/tag/v0.3.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`main`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**19 patches** across **4 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
+> **[v0.3.1](https://github.com/stivencop414-bot/PatchLab/releases/tag/v0.3.1)**&nbsp;&nbsp;&middot;&nbsp;&nbsp;`feat/meitu-premium`&nbsp;&nbsp;&middot;&nbsp;&nbsp;**19 patches** across **4 apps**&nbsp;&nbsp;&middot;&nbsp;&nbsp;[Full details](PATCHES.md)
 
 | # | App | Patches | Version | Package |
 |---|---|---|---|---|
