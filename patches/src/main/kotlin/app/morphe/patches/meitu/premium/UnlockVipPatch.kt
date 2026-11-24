@@ -1,6 +1,7 @@
 package app.morphe.patches.meitu.premium
 
 import app.morphe.patcher.extensions.InstructionExtensions.addInstructions
+import app.morphe.patcher.extensions.InstructionExtensions.instructions
 import app.morphe.patcher.patch.PatchException
 import app.morphe.patcher.patch.patch
 import app.morphe.patches.shared.compat.AppCompatibilities
@@ -82,8 +83,10 @@ val unlockVipPatch = patch(
         // This ensures the app starts with VIP state even before any method is called
         mutableClassDefBy("Lcom/meitu/vip/util/XXVipUtil;").apply {
             // Find <clinit> and add initialization of E=1 and F=1 at the end
-            methods.first { it.name == "<clinit>" }.addInstructions(
-                -1, // Insert at end of <clinit>
+            val clinit = methods.first { it.name == "<clinit>" }
+            val insertIndex = clinit.instructions.size
+            clinit.addInstructions(
+                insertIndex, // Insert at end of <clinit>
                 """
                     const/4 v0, 0x1
                     sput v0, Lcom/meitu/vip/util/XXVipUtil;->E:I
