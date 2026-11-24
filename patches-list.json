@@ -1,6 +1,6 @@
 {
   "NOTE": "Do NOT manually edit this file. This file is automatically updated when semantic release (release.yml) runs. Manually editing this file can break your releases and break third party tools that use this file.",
-  "version": "0.3.1",
+  "version": "0.4.0",
   "patches": [
     {
       "name": "Allow screenshots and screen recording",
@@ -626,7 +626,9 @@
           "description": null,
           "apkFileType": "APKM",
           "appIconColor": "#F01C48",
-          "signatures": null,
+          "signatures": [
+            "7b1a6d25e5e8711a6e79283df10c648b47a420c4e5413c2c51351a8ca508de25"
+          ],
           "formFactor": "MOBILE",
           "targets": [
             {

@@ -1,3 +1,9 @@
+## [0.4.0](https://github.com/stivencop414-bot/PatchLab/compare/v0.3.1...v0.4.0) (2026-11-24)
+
+### ✨ New Features
+
+* **meitu:** add Unlock VIP patch for Meitu 12.23.3 ([33c9ecc](https://github.com/stivencop414-bot/PatchLab/commit/33c9ecc6d5f0eb0bed0efffdace6152d4724cbd3))
+
 ## [0.3.1](https://github.com/stivencop414-bot/PatchLab/compare/v0.3.0...v0.3.1) (2026-11-23)
 
 ### 🐛 Bug Fixes
