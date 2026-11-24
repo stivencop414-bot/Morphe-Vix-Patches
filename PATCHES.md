@@ -26,7 +26,7 @@
 
 | Patch | Details |
 |---|---|
-| **Unlock VIP** | Reports an active VIP subscriber: isVip() returns true, isValidUser() returns 1, getVipType() returns 1 and VIP trial materials count as unlocked. Server-side per-material rights and AIGC quotas are not affected. |
+| **Unlock VIP** | Reports an active VIP subscriber: isVip() returns true, isValidUser() returns 1, getVipType() returns 1 and VIP trial materials count as unlocked. Static fields E (isValidUser) and F (vipType) are initialized to 1. Server-side per-material rights and AIGC quotas are not affected. |
 
 ---
 
