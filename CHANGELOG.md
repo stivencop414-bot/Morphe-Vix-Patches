@@ -1,3 +1,9 @@
+## [0.4.1](https://github.com/stivencop414-bot/PatchLab/compare/v0.4.0...v0.4.1) (2026-11-24)
+
+### 🐛 Bug Fixes
+
+* **meitu:** initialize static VIP fields E=1 F=1 in <clinit> to prevent startup override ([a46c54f](https://github.com/stivencop414-bot/PatchLab/commit/a46c54f131af3e8cd84536e83aabd2d2bd059b89))
+
 ## [0.4.0](https://github.com/stivencop414-bot/PatchLab/compare/v0.3.1...v0.4.0) (2026-11-24)
 
 ### ✨ New Features
