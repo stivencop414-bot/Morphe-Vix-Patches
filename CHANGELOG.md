@@ -1,3 +1,9 @@
+## [0.4.2](https://github.com/stivencop414-bot/PatchLab/compare/v0.4.1...v0.4.2) (2026-11-24)
+
+### 🐛 Bug Fixes
+
+* **meitu:** use instructions.size instead of -1 for <clinit> insertion (fixes IndexOutOfBoundsException) ([6d400b8](https://github.com/stivencop414-bot/PatchLab/commit/6d400b8a08ed46852237c11493397b3bf1cef3a6))
+
 ## [0.4.1](https://github.com/stivencop414-bot/PatchLab/compare/v0.4.0...v0.4.1) (2026-11-24)
 
 ### 🐛 Bug Fixes
